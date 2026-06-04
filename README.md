@@ -83,9 +83,10 @@ CLAUDE.md, AGENTS.md         Entry points (Claude Code / cross-tool)
 .cursor/rules/*.mdc          Cursor rules, path-scoped via globs
 docs/standards/*.md          Canonical conventions, shared by both tools
 docs/decisions/              The design-decision trail (see its README)
+docs/reviews/                Saved accessibility and design review reports
 .claude/skills/
   gov-prototype-setup/       Chat-first pack configuration
-  gov-prototype-scaffold/    Init versioned prototypes + create decision records (bundles scripts)
+  gov-prototype-scaffold/    Init versioned prototypes, decision records, review reports (bundles scripts)
   gov-decision-log/          How to capture decisions well
 .claude/agents/
   gov-content-designer       GDS copy
@@ -106,7 +107,7 @@ scripts/
   `node .claude/skills/gov-prototype-scaffold/scripts/scaffold.mjs v1 "first cut"`.
 - **Record a decision:** ask the agent to "log this decision", or run
   `node .claude/skills/gov-prototype-scaffold/scripts/new-adr.mjs "<title>"`. Decisions are recorded proactively as they're made — see `docs/decisions/README.md` for how the decentralised trail works.
-- **Review:** ask for an accessibility review or a design/conformance review before handover; both pull requirements and research via MCP where connected.
+- **Review:** ask for an accessibility review or a design/conformance review before handover; both pull requirements and research via MCP where connected and save a dated report in `docs/reviews/`.
 - **Ideate:** ask the design ideator for alternative approaches early, grounded in research and existing Figma frames.
 
 ## Switching departments

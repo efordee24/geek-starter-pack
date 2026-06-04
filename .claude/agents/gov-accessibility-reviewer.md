@@ -11,4 +11,17 @@ Check at least: colour contrast, visible focus styles, keyboard operability and 
 
 Return a report ordered by severity. For each finding give: the persona(s) affected, where it occurs, why it fails, and a concrete fix. Distinguish blocking issues from improvements.
 
-Run after key screens are built and again before release. After fixes, re-review to confirm. If a finding reflects a deliberate trade-off the team accepts, suggest recording it as a decision rather than silently leaving it.
+## Save the report
+
+Every review must be persisted in `docs/reviews/` (see `docs/reviews/README.md`), not only returned in chat.
+
+1. Create the file:
+   ```bash
+   node .claude/skills/gov-prototype-scaffold/scripts/new-review.mjs "<short review title>" --type accessibility [--prototype <version>]
+   ```
+   Filenames include local time after the date: `YYYY-MM-DD-HHMM-<slug>-<shortid>.md`.
+2. Fill **Summary**, **Scope**, and **Findings** (Blocking / Should fix / Improvements) plus **Persona notes** from your review. Replace placeholder text; do not leave "None recorded yet" if you found issues.
+3. Set frontmatter `status: final` when complete.
+4. Tell the user the path to the report file.
+
+Run after key screens are built and again before release. After fixes, re-review to confirm (new file per run). If a finding reflects a deliberate trade-off the team accepts, suggest recording it as a decision rather than silently leaving it.

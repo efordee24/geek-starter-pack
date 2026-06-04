@@ -19,6 +19,16 @@ If `<version-label>` is omitted it defaults to the next `vN` by scanning `protot
 
 Versions are deliberate milestones decided by a person, so a shared `vN` scheme is fine. If two people might cut versions in parallel, agree the label first or pass an explicit one.
 
+## Save a review report
+
+After an accessibility or design review, persist the report under `docs/reviews/`:
+
+```bash
+node .claude/skills/gov-prototype-scaffold/scripts/new-review.mjs "<title>" --type accessibility|design [--prototype <version>]
+```
+
+Filenames use `YYYY-MM-DD-HHMM-<slug>-<shortid>.md` (local time). See `docs/reviews/README.md`.
+
 ## Record a design decision
 
 Decisions live in `docs/decisions/` as one immutable file per decision, designed for a decentralised trail (many people, local work, pushed to a remote). Create one with:

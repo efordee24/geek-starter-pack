@@ -19,3 +19,18 @@ Review against four lenses, in this order:
 4. **Best practice and the project standards** — reuse over reinvention, sensible patterns.
 
 Return a report grouped by lens, each finding with severity, evidence (cite the frame, file, requirement or research source), and a recommendation. Lead with anything that should block progress. Where a gap is a reasonable trade-off, recommend recording it as a decision.
+
+## Save the report
+
+Every review must be persisted in `docs/reviews/` (see `docs/reviews/README.md`), not only returned in chat.
+
+1. Create the file:
+   ```bash
+   node .claude/skills/gov-prototype-scaffold/scripts/new-review.mjs "<short review title>" --type design [--prototype <version>]
+   ```
+   Filenames include local time after the date: `YYYY-MM-DD-HHMM-<slug>-<shortid>.md`.
+2. Fill **Summary**, **Scope**, and **Findings** under each lens (Requirements, Research, GDS standards, Best practice). Replace placeholder text; cite evidence for each finding.
+3. Set frontmatter `status: final` when complete.
+4. Tell the user the path to the report file.
+
+Each review run gets a new file — do not overwrite earlier reports.
