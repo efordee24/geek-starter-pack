@@ -10,17 +10,20 @@ The design idea: the **department-specific layer is tiny and isolated** (one con
 
 ## Setup
 
-```bash
-# 1. Clone (or fork) this pack as the start of your service repo
-git clone <this-pack> my-service && cd my-service
 
+# 1. Clone (or fork) this pack as the start of your service repo
+```bash
+git clone <this-pack> my-service && cd my-service
+```
 # 2. Set your department/service details
-#    edit config/project.json
+edit config/project.json
 
 # 3. Render the config into the rules
+```bash
 node scripts/bootstrap.mjs
-
+```
 # 4. Start your own history
+```bash
 rm -rf .git && git init && git add -A && git commit -m "Initial prototype from starter pack"
 git remote add origin <your-remote> && git push -u origin main
 ```
