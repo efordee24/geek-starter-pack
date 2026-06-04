@@ -5,6 +5,9 @@ alwaysApply: true
 
 Building a GOV.UK-style frontend for a {{SERVICE_NAME}} at {{DEPARTMENT_FULL_NAME}} ({{DEPARTMENT_NAME}}). Audience: {{AUDIENCE}} — {{AUDIENCE_NOTE}}.
 
+Product and service context: @PRODUCT.md
+GDS design constraints for this service: @DESIGN.md
+
 Non-negotiables:
 - Reuse and compose before adding new components, styles or tokens. Justify any addition.
 - Accessibility is the default, not a later pass. Target WCAG {{WCAG_TARGET}}.

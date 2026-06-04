@@ -1,5 +1,5 @@
 {
-  "_comment": "Edit these values, then run `node scripts/bootstrap.mjs` to render them into the rules. This is the only department-specific configuration; everything else in this pack is department-agnostic.",
+  "_comment": "Edit these values and run `node scripts/bootstrap.mjs`, or ask the agent to set up this prototype pack (gov-prototype-setup skill). See PRODUCT.md and DESIGN.md for narrative context.",
   "department": {
     "name": "Defra",
     "fullName": "Department for Environment, Food and Rural Affairs"

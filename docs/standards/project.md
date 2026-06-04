@@ -4,6 +4,9 @@ This is a GOV.UK-style frontend for a **{{SERVICE_NAME}}** built for **{{DEPARTM
 
 Audience: **{{AUDIENCE}}** — {{AUDIENCE_NOTE}}.
 
+Product and service context: see `PRODUCT.md` at the repo root.
+GDS design constraints for this service: see `DESIGN.md` at the repo root.
+
 ## What this means for design decisions
 
 - Reuse and compose before you add. Every new component, style or token is something the whole team now has to learn and maintain — reach for an existing GOV.UK Design System pattern or an existing app pattern first, and only add when you can say why the existing set can't carry the intent.
