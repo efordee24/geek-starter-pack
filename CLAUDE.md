@@ -16,12 +16,14 @@ These imports load at launch. Full standards:
 @docs/standards/javascript.md
 @docs/standards/content.md
 @docs/standards/figma-mcp.md
+@docs/standards/govuk-frontend.md
 
 ## Skills and sub-agents
 
 - **Set up or reconfigure this pack** → use the `gov-prototype-setup` skill.
 - **First prototype version or a new cut** → use the `gov-prototype-scaffold` skill (pack starts with no v1/v2; dashboard shows an empty state until you scaffold).
 - Recording a design decision → use the `gov-decision-log` skill.
+- GOV.UK Frontend version check or header/component refresh → use the `gov-govuk-frontend` skill (`npm run check:govuk-frontend`).
 - Writing or refining user-facing copy → delegate to the `gov-content-designer` sub-agent.
 - Accessibility review → `gov-accessibility-reviewer` sub-agent.
 - Conformance review against GDS, requirements and research → `gov-design-reviewer` sub-agent.

@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check:govuk-frontend": "node scripts/check-govuk-frontend.mjs"
   },
   "dependencies": {
     "@hapi/hapi": "21.4.4",
     "@hapi/inert": "7.1.0",
     "@hapi/vision": "7.0.3",
-    "govuk-frontend": "5.11.2",
+    "govuk-frontend": "^6.2.0",
     "nunjucks": "3.2.4"
   },
   "devDependencies": {

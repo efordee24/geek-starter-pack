@@ -9,7 +9,7 @@ export const loadProjectConfig = () => {
     return {
       department: { name: 'Department', fullName: 'Department' },
       service: { name: 'Prototype', audience: 'internal', audienceNote: '' },
-      standards: { govukFrontendVersion: '5.x', wcagTarget: '2.2 AA' }
+      standards: { govukFrontendVersion: '6.x', wcagTarget: '2.2 AA' }
     }
   }
   return JSON.parse(readFileSync(configPath, 'utf8'))

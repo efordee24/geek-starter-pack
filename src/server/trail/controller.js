@@ -11,6 +11,7 @@ export const getTrailHub = (request, h) => {
   const decisions = listTrailFiles('decisions')
   const reviews = listTrailFiles('reviews')
   return h.view('trail/trail-hub.njk', baseViewContext({
+    navActive: 'trail',
     pageTitle: 'Design trail',
     versions,
     decisionCount: decisions.length,
@@ -22,6 +23,7 @@ export const getDecisions = (request, h) => {
   const prototype = request.query.prototype
   const items = filterByPrototype(listTrailFiles('decisions'), prototype)
   return h.view('trail/trail-list.njk', baseViewContext({
+    navActive: 'trail',
     pageTitle: 'Decision records',
     trailType: 'decisions',
     items,
@@ -34,6 +36,7 @@ export const getReviews = (request, h) => {
   const prototype = request.query.prototype
   const items = filterByPrototype(listTrailFiles('reviews'), prototype)
   return h.view('trail/trail-list.njk', baseViewContext({
+    navActive: 'trail',
     pageTitle: 'Review reports',
     trailType: 'reviews',
     items,

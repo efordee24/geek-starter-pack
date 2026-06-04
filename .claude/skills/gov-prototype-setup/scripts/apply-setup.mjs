@@ -2,7 +2,7 @@
 // Apply setup payload: config + PRODUCT.md + DESIGN.md, then bootstrap and check.
 // Usage: apply-setup.mjs [--file path.json]   (stdin if --file omitted)
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { join } from 'node:path'
 
@@ -35,7 +35,7 @@ const configDoc = {
   department: config.department,
   service: config.service,
   standards: config.standards ?? {
-    govukFrontendVersion: '5.x',
+    govukFrontendVersion: '6.x',
     styleGuideUrl: 'https://github.com/DEFRA/aice-team/blob/main/documentation/style-guides/javascript.md',
     wcagTarget: '2.2 AA'
   },
@@ -76,4 +76,19 @@ if (bootstrapStatus !== 0) process.exit(bootstrapStatus)
 const syncStatus = run('scripts/sync-context.mjs')
 if (syncStatus !== 0) process.exit(syncStatus)
 
-process.exit(run('scripts/check-setup.mjs'))
+const setupStatus = run('scripts/check-setup.mjs')
+if (setupStatus !== 0) process.exit(setupStatus)
+
+const govukInstalled = join(root, 'node_modules', 'govuk-frontend', 'package.json')
+if (existsSync(govukInstalled)) {
+  const govukStatus = run('scripts/check-govuk-frontend.mjs')
+  if (govukStatus === 1) {
+    console.warn(
+      'Note: a newer govuk-frontend is on npm — run npm run check:govuk-frontend after setup and see docs/standards/govuk-frontend.md'
+    )
+  } else if (govukStatus === 2) {
+    console.warn('Could not verify govuk-frontend — run npm run check:govuk-frontend after npm install')
+  }
+}
+
+process.exit(0)

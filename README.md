@@ -37,7 +37,10 @@ Open [http://localhost:3000/](http://localhost:3000/) — the **dashboard** link
 
 ```bash
 node scripts/check-setup.mjs
+npm run check:govuk-frontend
 ```
+
+`check:govuk-frontend` compares your installed GOV.UK Frontend to npm and lists relevant CHANGELOG releases — use it for periodic Design System drift checks (`docs/standards/govuk-frontend.md`).
 
 Optional: `node scripts/load-context.mjs` prints `PRODUCT.md`, `DESIGN.md`, and config as JSON for agents.
 

@@ -10,7 +10,7 @@
     "audienceNote": "Civil servants and departmental staff, not the public"
   },
   "standards": {
-    "govukFrontendVersion": "5.x",
+    "govukFrontendVersion": "6.x",
     "styleGuideUrl": "https://github.com/DEFRA/aice-team/blob/main/documentation/style-guides/javascript.md",
     "wcagTarget": "2.2 AA"
   },

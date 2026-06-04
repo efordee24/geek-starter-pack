@@ -29,7 +29,7 @@ Ask plainly; do not dump all questions at once. Skip questions already answered 
 |-------|-----------|-----------|
 | Identity | Department short name, full name, service name | `config` + `PRODUCT.md` header |
 | Audience | internal or public; who uses it; domain terms OK? | `config.service` + `PRODUCT.md` Users |
-| Standards | WCAG target (default 2.2 AA), GOV.UK Frontend version (default 5.x), JS style guide URL | `config.standards` + `DESIGN.md` stack |
+| Standards | WCAG target (default 2.2 AA), GOV.UK Frontend major line (default 6.x — pack-pinned in `package.json`), JS style guide URL | `config.standards` + `DESIGN.md` stack (installed version filled after check, below) |
 | Product | Service purpose, key tasks, tone, anti-references, requirements/research URLs | `PRODUCT.md` |
 | Design | Patterns to prefer/avoid within GDS, any approved `app-` extensions | `DESIGN.md` |
 | Figma workspace | Account, team/org, project for new files, primary design file URL | `config.figma` + `DESIGN.md` Figma section |
@@ -47,7 +47,7 @@ Build a JSON payload matching this shape:
   "config": {
     "department": { "name": "...", "fullName": "..." },
     "service": { "name": "...", "audience": "internal|public", "audienceNote": "..." },
-    "standards": { "govukFrontendVersion": "5.x", "styleGuideUrl": "...", "wcagTarget": "2.2 AA" },
+    "standards": { "govukFrontendVersion": "6.x", "styleGuideUrl": "...", "wcagTarget": "2.2 AA" },
     "mcp": { "figma": "Figma", "research": "Notion", "docs": "Notion" },
     "figma": {
       "verifiedAccount": "",
@@ -124,6 +124,10 @@ If Figma MCP is unavailable during setup, record what the user *intends* (accoun
 ## Closing
 
 - Report `check-setup` result; if it fails, say what to fix. An empty `prototypes/` folder is **expected** — not a setup failure.
+- Ask whether they have run `npm install` (or run it for them if appropriate). Then run `npm run check:govuk-frontend`:
+  - If dependencies are missing, say to run `npm install` first — do not treat that as a failed pack setup.
+  - On success, update the **GOV.UK Frontend** line in `DESIGN.md` with the installed version from the script output (e.g. `6.2.0`).
+  - If the check reports a newer npm version, mention it as optional follow-up — not a blocker for finishing setup.
 - Tell the user they can say "set up" again to reconfigure, or edit `PRODUCT.md` / `DESIGN.md` directly.
 
 ### First prototype version (after pack setup)

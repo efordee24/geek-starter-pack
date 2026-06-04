@@ -1,10 +1,14 @@
+{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
+
 <!DOCTYPE html>
 <html lang="en" class="govuk-template">
   <head>
     <meta charset="utf-8">
     <title>{% block pageTitle %}{{ pageTitle }} | {{ serviceName }}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#0b0c0c">
+    <meta name="theme-color" content="#1d70b8">
+    <link rel="icon" sizes="48x48" href="/govuk/images/favicon.ico">
+    <link rel="icon" sizes="any" href="/govuk/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/govuk/govuk-frontend.min.css">
     {% block head %}{% endblock %}
   </head>
@@ -12,42 +16,14 @@
     {% raw %}
     <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
     {% endraw %}
-    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-    <header class="govuk-header" role="banner" data-module="govuk-header">
-      <div class="govuk-header__container govuk-width-container">
-        <div class="govuk-header__logo">
-          <a href="/" class="govuk-header__link govuk-header__link--homepage">
-            <span class="govuk-header__product-name">{{ serviceName }}</span>
-          </a>
-        </div>
-        <nav aria-label="Menu" class="govuk-header__navigation">
-          <ul class="govuk-header__navigation-list">
-            <li class="govuk-header__navigation-item">
-              <a class="govuk-header__link" href="/">Dashboard</a>
-            </li>
-            <li class="govuk-header__navigation-item">
-              <a class="govuk-header__link" href="/trail">Design trail</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    {{ govukSkipLink({ href: "#main-content", text: "Skip to main content" }) }}
+    {% include "common/templates/partials/site-header.njk" %}
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
         {% block content %}{% endblock %}
       </main>
     </div>
-    <footer class="govuk-footer" role="contentinfo">
-      <div class="govuk-width-container">
-        <div class="govuk-footer__meta">
-          <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
-            <span class="govuk-footer__licence-description">
-              {{ departmentFullName }} prototype — not a live service.
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {% include "common/templates/partials/site-footer.njk" %}
     <script type="module" src="/govuk/govuk-frontend.min.js"></script>
     {% raw %}
     <script type="module">

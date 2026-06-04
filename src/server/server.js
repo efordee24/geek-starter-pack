@@ -10,6 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '../..')
 const serverPath = join(__dirname)
 const govukAssets = join(root, 'node_modules/govuk-frontend/dist/govuk')
+const govukMacros = join(root, 'node_modules/govuk-frontend/dist')
 
 export const createServer = async () => {
   const server = Hapi.server({
@@ -18,7 +19,7 @@ export const createServer = async () => {
     routes: { files: { relativeTo: root } }
   })
 
-  const nunjucksEnv = Nunjucks.configure(serverPath, {
+  const nunjucksEnv = Nunjucks.configure([serverPath, govukMacros], {
     autoescape: true,
     noCache: process.env.NODE_ENV !== 'production',
     watch: false

@@ -1,0 +1,7 @@
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+
+{{ govukFooter({
+  contentLicence: {
+    html: departmentFullName ~ " prototype — not a live service."
+  }
+}) }}
