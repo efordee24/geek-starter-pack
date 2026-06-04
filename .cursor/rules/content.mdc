@@ -1,0 +1,16 @@
+---
+description: GOV.UK content design and UI writing
+globs:
+  - "**/*.njk"
+  - "**/content/**"
+  - "**/*.md"
+alwaysApply: false
+---
+
+- Sentence case, no ampersands, ISO dates ("24 April 2025").
+- Active voice, address the user as "you", one idea per sentence, front-load key information.
+- Error messages: what happened + what to do next.
+- Adapt tone to the audience set in project context (internal = concise, domain terms OK; public = plain language, no assumed knowledge).
+- For user-facing copy, prefer the gov-content-designer sub-agent.
+
+Full conventions: @docs/standards/content.md

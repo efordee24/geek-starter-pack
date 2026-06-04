@@ -1,0 +1,14 @@
+---
+description: Core project context and design principles for this GOV.UK service
+alwaysApply: true
+---
+
+Building a GOV.UK-style frontend for a {{SERVICE_NAME}} at {{DEPARTMENT_FULL_NAME}} ({{DEPARTMENT_NAME}}). Audience: {{AUDIENCE}} — {{AUDIENCE_NOTE}}.
+
+Non-negotiables:
+- Reuse and compose before adding new components, styles or tokens. Justify any addition.
+- Accessibility is the default, not a later pass. Target WCAG {{WCAG_TARGET}}.
+- State design intent in your reasoning, not just the implementation.
+- Record non-obvious design/technical decisions in `docs/decisions/` (see the decisions rule).
+
+Full context: @docs/standards/project.md

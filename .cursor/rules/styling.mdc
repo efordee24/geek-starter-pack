@@ -1,0 +1,17 @@
+---
+description: SCSS styling priority and reuse rules
+globs:
+  - "**/*.scss"
+  - "**/*.css"
+  - "**/stylesheets/**"
+alwaysApply: false
+---
+
+Maximise reuse, minimise new styles. Follow in order:
+1. Reuse an existing app style.
+2. Use a GOV.UK Design System style (search `node_modules/govuk-frontend`).
+3. New style — last resort, needs explicit approval, must use the `app-` prefix.
+
+Never duplicate existing styles. Extract and reuse hardcoded colours and dimensions.
+
+Full conventions: @docs/standards/styling.md

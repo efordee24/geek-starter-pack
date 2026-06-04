@@ -1,0 +1,10 @@
+---
+description: When and why to record design decisions
+alwaysApply: true
+---
+
+When you make a non-obvious design or technical decision — choosing one GOV.UK pattern over another, deviating from a default, resolving a trade-off, or settling a question raised in discussion — record it as a decision record in `docs/decisions/`.
+
+Do this proactively as the decision is made, not in a batch later, and also whenever the user says to log or capture a decision. Use the `gov-decision-log` skill, which creates a collision-safe record via `.claude/skills/gov-prototype-scaffold/scripts/new-adr.mjs`. Capture the *why*, the options considered, and the consequences — the trail is for the next person, who won't have been in the room.
+
+Never edit or renumber an existing record to change a decision. Supersede it with a new record that references the old one by id.

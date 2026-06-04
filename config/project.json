@@ -1,0 +1,22 @@
+{
+  "_comment": "Edit these values, then run `node scripts/bootstrap.mjs` to render them into the rules. This is the only department-specific configuration; everything else in this pack is department-agnostic.",
+  "department": {
+    "name": "Defra",
+    "fullName": "Department for Environment, Food and Rural Affairs"
+  },
+  "service": {
+    "name": "internal AI assistant service",
+    "audience": "internal",
+    "audienceNote": "Civil servants and departmental staff, not the public"
+  },
+  "standards": {
+    "govukFrontendVersion": "5.x",
+    "styleGuideUrl": "https://github.com/DEFRA/aice-team/blob/main/documentation/style-guides/javascript.md",
+    "wcagTarget": "2.2 AA"
+  },
+  "mcp": {
+    "figma": "Figma",
+    "research": "Notion",
+    "docs": "Notion"
+  }
+}

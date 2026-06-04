@@ -1,0 +1,16 @@
+---
+description: JavaScript and TypeScript conventions
+globs:
+  - "**/*.js"
+  - "**/*.mjs"
+  - "**/*.ts"
+alwaysApply: false
+---
+
+- ES modules only, named exports only, no semicolons.
+- 2 spaces, 80-char lines. `const` by default, never `var`. Single quotes.
+- Function declarations over arrow functions (except callbacks).
+- Lint with neostandard. Vitest for tests in top-level `tests/`, named `<module>.test.js`.
+- Pin dependencies to exact versions — no `^` or `~`.
+
+Full conventions: @docs/standards/javascript.md
