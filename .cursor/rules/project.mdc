@@ -15,3 +15,5 @@ Non-negotiables:
 - Record non-obvious design/technical decisions in `docs/decisions/` (see the decisions rule).
 
 Full context: @docs/standards/project.md
+
+Before Figma MCP reads or writes: @docs/standards/figma-mcp.md (confirm account and project from `config/project.json` → `figma`).

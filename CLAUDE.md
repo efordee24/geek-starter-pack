@@ -14,6 +14,7 @@ These imports load at launch. Full standards:
 @docs/standards/styling.md
 @docs/standards/javascript.md
 @docs/standards/content.md
+@docs/standards/figma-mcp.md
 
 ## Skills and sub-agents
 

@@ -18,5 +18,14 @@
     "figma": "Figma",
     "research": "Notion",
     "docs": "Notion"
+  },
+  "figma": {
+    "verifiedAccount": "",
+    "planKey": "",
+    "planName": "",
+    "projectId": "",
+    "projectName": "",
+    "primaryFileUrl": "",
+    "primaryFileKey": ""
   }
 }

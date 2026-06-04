@@ -39,7 +39,16 @@ const configDoc = {
     styleGuideUrl: 'https://github.com/DEFRA/aice-team/blob/main/documentation/style-guides/javascript.md',
     wcagTarget: '2.2 AA'
   },
-  mcp: config.mcp ?? { figma: 'Figma', research: 'Notion', docs: 'Notion' }
+  mcp: config.mcp ?? { figma: 'Figma', research: 'Notion', docs: 'Notion' },
+  figma: config.figma ?? {
+    verifiedAccount: '',
+    planKey: '',
+    planName: '',
+    projectId: '',
+    projectName: '',
+    primaryFileUrl: '',
+    primaryFileKey: ''
+  }
 }
 
 writeFileSync(

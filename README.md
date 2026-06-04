@@ -63,6 +63,8 @@ Connect these in your tool’s MCP settings. Names are stored in `config/project
 | Requirements / research | Notion (or your research source) | `mcp.research` |
 | Decision mirror (optional) | Notion / docs store | `mcp.docs` |
 
+**Figma:** during setup the agent runs MCP `whoami`, confirms the right **account**, **team/org** (`planKey`), and **project** for new files, and records them in `config/project.json` → `figma` and `DESIGN.md`. See [docs/standards/figma-mcp.md](docs/standards/figma-mcp.md). Agents must not create files in the wrong account or personal Drafts when a team project is configured.
+
 Reviewers and ideators use Figma and research connectors when available; they fall back to repo content (`PRODUCT.md`, `docs/decisions/`) and say so if a connector is missing.
 
 ## How each tool picks this up

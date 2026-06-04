@@ -20,9 +20,18 @@ This file describes **service-specific choices within GOV.UK Design System const
 
 [TODO Patterns to prefer or avoid for this service — e.g. task list for bulk actions, summary list for review.]
 
-## Figma
+## Figma (MCP workspace)
 
-- [TODO Figma file URL or "none yet"]
+Set during pack setup. Agents must run Figma MCP `whoami` and match this section before creating or editing files. See [docs/standards/figma-mcp.md](docs/standards/figma-mcp.md).
+
+| | |
+|--|--|
+| **Account (verified)** | [TODO email or handle from whoami] |
+| **Team / organisation** | [TODO name] (`planKey`: [TODO team::… or organization::…]) |
+| **Project for new files** | [TODO project name] (`projectId`: [TODO]) |
+| **Primary design file** | [TODO URL] (`fileKey`: [TODO]) |
+
+New Figma files must be created in the project above, not in personal Drafts, unless the user explicitly chooses otherwise in chat.
 
 ## Non-goals
 

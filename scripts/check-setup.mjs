@@ -53,14 +53,28 @@ if (!existsSync(designPath)) {
   }
 }
 
+const warnings = []
+const configPath = join(root, 'config', 'project.json')
+if (existsSync(configPath)) {
+  try {
+    const cfg = JSON.parse(readFileSync(configPath, 'utf8'))
+    const f = cfg.figma ?? {}
+    if (!f.verifiedAccount && !f.planKey) {
+      warnings.push('Figma workspace not verified — complete setup MCP step (whoami) and fill config.figma')
+    }
+  } catch { /* ignore */ }
+}
+
 const ok = issues.length === 0
-const result = { ok, issues }
+const result = { ok, issues, warnings }
 
 if (jsonOut) {
   console.log(JSON.stringify(result, null, 2))
 } else {
-  if (ok) console.log('Setup check passed.')
-  else {
+  if (ok) {
+    console.log('Setup check passed.')
+    for (const w of warnings) console.log(`  Warning: ${w}`)
+  } else {
     console.log('Setup check failed:')
     for (const i of issues) console.log(`  - ${i}`)
   }

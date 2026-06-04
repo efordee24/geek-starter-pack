@@ -24,7 +24,9 @@ Non-negotiables:
 - State design intent in your reasoning, not just the implementation.
 - Record non-obvious design/technical decisions in \`docs/decisions/\` (see the decisions rule).
 
-Full context: @docs/standards/project.md`
+Full context: @docs/standards/project.md
+
+Before Figma MCP reads or writes: @docs/standards/figma-mcp.md (confirm account and project from \`config/project.json\` → \`figma\`).`
 
 const projectMdIntro = `This is a GOV.UK-style frontend for a **${s.name}** built for **${d.fullName} (${d.name})**.
 

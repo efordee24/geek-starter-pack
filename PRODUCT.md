@@ -36,6 +36,6 @@ What this service must **not** sound or look like:
 
 Configured in `config/project.json` (names only):
 
-- Figma: [TODO]
+- Figma: [TODO connector name] — account and project: see `DESIGN.md` and `docs/standards/figma-mcp.md`
 - Research: [TODO]
 - Docs: [TODO]

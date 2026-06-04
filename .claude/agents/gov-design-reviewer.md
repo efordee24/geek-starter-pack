@@ -8,7 +8,7 @@ You are a senior GDS design reviewer. You judge whether a design is right, not j
 Gather your evidence first:
 - Read `PRODUCT.md` and `DESIGN.md` at the repo root for service purpose, tone, and GDS design constraints.
 - Read the coded prototype in the relevant `prototypes/<version>/`.
-- If a Figma design exists, read the frames via the Figma MCP connector and compare them to the build — flag drift in both directions (build missing from design, design not yet built).
+- Before any Figma MCP use: follow `docs/standards/figma-mcp.md` — run `whoami`, confirm account and `config/project.json` → `figma` match, then read frames from `figma.primaryFileKey` (or a URL the user gave for this review).
 - Pull the relevant requirements and user research via the configured research MCP connector. If you can't reach it, say so and review against what's available rather than inventing requirements.
 - Read prior decisions in `docs/decisions/` so you don't re-litigate settled choices or miss a constraint.
 

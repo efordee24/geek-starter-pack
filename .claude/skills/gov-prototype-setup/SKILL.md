@@ -31,7 +31,8 @@ Ask plainly; do not dump all questions at once. Skip questions already answered 
 | Audience | internal or public; who uses it; domain terms OK? | `config.service` + `PRODUCT.md` Users |
 | Standards | WCAG target (default 2.2 AA), GOV.UK Frontend version (default 5.x), JS style guide URL | `config.standards` + `DESIGN.md` stack |
 | Product | Service purpose, key tasks, tone, anti-references, requirements/research URLs | `PRODUCT.md` |
-| Design | Figma links, patterns to prefer/avoid within GDS, any approved `app-` extensions | `DESIGN.md` |
+| Design | Patterns to prefer/avoid within GDS, any approved `app-` extensions | `DESIGN.md` |
+| Figma workspace | Account, team/org, project for new files, primary design file URL | `config.figma` + `DESIGN.md` Figma section |
 | Connectors | MCP server names for Figma, research, docs (names only, no secrets) | `config.mcp` |
 | Finish | Show a short summary; get explicit confirmation before writing | all files |
 
@@ -47,7 +48,16 @@ Build a JSON payload matching this shape:
     "department": { "name": "...", "fullName": "..." },
     "service": { "name": "...", "audience": "internal|public", "audienceNote": "..." },
     "standards": { "govukFrontendVersion": "5.x", "styleGuideUrl": "...", "wcagTarget": "2.2 AA" },
-    "mcp": { "figma": "Figma", "research": "Notion", "docs": "Notion" }
+    "mcp": { "figma": "Figma", "research": "Notion", "docs": "Notion" },
+    "figma": {
+      "verifiedAccount": "",
+      "planKey": "",
+      "planName": "",
+      "projectId": "",
+      "projectName": "",
+      "primaryFileUrl": "",
+      "primaryFileKey": ""
+    }
   },
   "productMarkdown": "# ... full PRODUCT.md body ...",
   "designMarkdown": "# ... full DESIGN.md body ..."
@@ -85,15 +95,31 @@ Never run `rm -rf .git` without explicit confirmation.
 
 ## MCP onboarding (checklist)
 
-After files are written, walk through connector setup in the user's tool (Cursor or Claude Code):
+After files are written, walk through connector setup in the user's tool (Cursor or Claude Code).
+
+Remind: connector names are references only; credentials stay in the tool, not in the repo.
+
+### Figma (required verification)
+
+Do not skip account and project checks. Full rules: `docs/standards/figma-mcp.md`.
+
+1. Ask the user to connect the Figma MCP server named in `config.mcp.figma` (usually `Figma`).
+2. Call the Figma MCP **`whoami`** tool.
+3. Show the user the authenticated identity and ask: **Is this the correct Figma account for this service?** If not, they must re-authenticate in MCP settings and you run `whoami` again.
+4. If `whoami` returns **multiple plans** (teams or organisations), list them and ask which owns this service’s design work. Record the chosen plan’s `key` as `figma.planKey` and a readable `figma.planName`.
+5. Ask which **project** (folder) new design files should be created in. Prefer a project URL; extract `projectId` (see `figma-mcp.md`). Record `figma.projectName`.
+6. Ask for the **primary design file** URL if one exists; extract `fileKey` into `figma.primaryFileKey`. If none yet, say `none yet` in `DESIGN.md` and leave keys empty.
+7. Update `config/project.json` → `figma` and the Figma table in `DESIGN.md` with verified values. Re-run `apply-setup.mjs` with the updated payload, or patch those files and run `node scripts/sync-context.mjs` if bootstrap already ran.
+8. Tell the user: agents will not create Figma files outside this project unless they explicitly ask in chat.
+
+If Figma MCP is unavailable during setup, record what the user *intends* (account email, team name, project name, file URL) and note in `DESIGN.md` that `whoami` verification is still required before the first Figma write.
+
+### Other connectors
 
 | Purpose | Config key | User action |
 |---------|------------|-------------|
-| Designs | `mcp.figma` | Connect the Figma MCP server named in config |
 | Requirements / research | `mcp.research` | Connect Notion or equivalent |
 | Decision mirror (optional) | `mcp.docs` | Connect docs store if the team uses one |
-
-Remind: connector names are references only; credentials stay in the tool, not in the repo.
 
 ## Closing
 
