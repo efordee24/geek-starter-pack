@@ -1,0 +1,72 @@
+{% extends "common/templates/layouts/govuk-layout.njk" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Prototype dashboard</h1>
+      <p class="govuk-body-l">
+        {{ serviceName }} — {{ departmentFullName }}.
+        Audience: {{ audience }}.
+      </p>
+    </div>
+  </div>
+
+  <h2 class="govuk-heading-l">Prototype versions</h2>
+  {% if versions.length %}
+    <dl class="govuk-summary-list">
+      {% for v in versions %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <a class="govuk-link" href="{{ v.routesPrefix }}/">{{ v.version }}</a>
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ v.description or 'No description' }}
+            {% if v.status %}
+              <strong class="govuk-tag govuk-tag--{% if v.status == 'frozen' %}grey{% else %}green{% endif %}">{{ v.status }}</strong>
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            {% if v.created %}
+              <span class="govuk-body-s">{{ v.created }}</span>
+            {% endif %}
+          </dd>
+        </div>
+      {% endfor %}
+    </dl>
+    <p class="govuk-body">To add another version, ask the agent to <strong>cut a new prototype version</strong> or run the scaffold script (see <code>docs/standards/prototypes.md</code>).</p>
+  {% else %}
+    <div class="govuk-inset-text">
+      <p class="govuk-body">No prototype versions yet. This pack starts without v1 or v2 placeholders — you create the first cut when you are ready.</p>
+    </div>
+
+    <h3 class="govuk-heading-m">Create your first version</h3>
+    <p class="govuk-body">In Cursor or Claude Code, you can say:</p>
+    <blockquote class="govuk-body" style="border-left: 4px solid #b1b4b6; margin-left: 0; padding-left: 15px">
+      Create my first prototype version — v1 for [short description of this cut]
+    </blockquote>
+    <p class="govuk-body">The agent will use the <code>gov-prototype-scaffold</code> skill to add <code>prototypes/v1/VERSION.md</code> and routes under <code>src/server/versions/v1/</code>, then remind you to restart <code>npm start</code> if the app is already running.</p>
+
+    <p class="govuk-body">Or run this in the project folder:</p>
+    <pre class="govuk-body" style="background: #f3f2f1; padding: 15px; overflow-x: auto"><code>node .claude/skills/gov-prototype-scaffold/scripts/scaffold.mjs "first cut"</code></pre>
+    <p class="govuk-body">That defaults to <strong>v1</strong>. Refresh this page after scaffolding to open <code>/v1/</code>.</p>
+  {% endif %}
+
+  <h2 class="govuk-heading-l">Design trail</h2>
+  <p class="govuk-body">
+    {{ decisionCount }} decision{% if decisionCount > 1 %}s{% endif %},
+    {{ reviewCount }} review{% if reviewCount > 1 %}s{% endif %}
+    (also in the repo under <code>docs/</code>).
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li><a class="govuk-link" href="/trail">Design trail hub</a></li>
+    <li><a class="govuk-link" href="/trail/decisions">Decision records</a> — <code>docs/decisions/</code></li>
+    <li><a class="govuk-link" href="/trail/reviews">Review reports</a> — <code>docs/reviews/</code></li>
+  </ul>
+
+  <h2 class="govuk-heading-l">Service context</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li><code>PRODUCT.md</code> — product and user context</li>
+    <li><code>DESIGN.md</code> — GDS design constraints</li>
+    <li><code>docs/standards/</code> — build conventions</li>
+  </ul>
+{% endblock %}

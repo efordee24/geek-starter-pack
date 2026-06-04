@@ -10,6 +10,7 @@ Design constraints: @DESIGN.md
 These imports load at launch. Full standards:
 
 @docs/standards/project.md
+@docs/standards/prototypes.md
 @docs/standards/templates.md
 @docs/standards/styling.md
 @docs/standards/javascript.md
@@ -19,7 +20,7 @@ These imports load at launch. Full standards:
 ## Skills and sub-agents
 
 - **Set up or reconfigure this pack** → use the `gov-prototype-setup` skill.
-- Scaffolding a new prototype or cutting a new version → use the `gov-prototype-scaffold` skill.
+- **First prototype version or a new cut** → use the `gov-prototype-scaffold` skill (pack starts with no v1/v2; dashboard shows an empty state until you scaffold).
 - Recording a design decision → use the `gov-decision-log` skill.
 - Writing or refining user-facing copy → delegate to the `gov-content-designer` sub-agent.
 - Accessibility review → `gov-accessibility-reviewer` sub-agent.

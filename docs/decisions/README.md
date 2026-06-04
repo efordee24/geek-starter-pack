@@ -19,6 +19,8 @@ node .claude/skills/gov-prototype-scaffold/scripts/new-adr.mjs "Use radios not a
 
 This captures your name and the timestamp from git and writes a template to fill in. Or just ask Claude to record a decision — the `gov-decision-log` skill does the same thing.
 
+When the app is running, browse the index at [/trail/decisions](http://localhost:3000/trail/decisions) (filter with `?prototype=v1`).
+
 ## Changing a decision
 
 Never edit a past record to reverse it, and never renumber. Create a new record with `--supersedes <old-id>` and mark the old one superseded. The history of *how the thinking changed* is the point.

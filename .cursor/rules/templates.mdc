@@ -10,6 +10,6 @@ alwaysApply: false
 - Import GOV.UK macros at the top of each template, one per line.
 - Validation errors go through `govukErrorSummary` plus a per-field error item.
 - Separate data from presentation; use reusable Nunjucks filters.
-- New page/feature → folder at `src/server/<feature-name>/` (index.js, controller.js, <feature-name>.njk), registered in `src/server/router.js`.
+- New page/feature → folder at `src/server/versions/<version>/<feature-name>/` (index.js, controller.js, template). Shared code in `src/server/common/`.
 
-Full conventions: @docs/standards/templates.md
+Full conventions: @docs/standards/templates.md and @docs/standards/prototypes.md

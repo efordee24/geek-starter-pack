@@ -1,0 +1,21 @@
+{
+  "name": "gds-prototype-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@hapi/hapi": "21.4.4",
+    "@hapi/inert": "7.1.0",
+    "@hapi/vision": "7.0.3",
+    "govuk-frontend": "5.11.2",
+    "nunjucks": "3.2.4"
+  },
+  "devDependencies": {
+    "neostandard": "0.12.2",
+    "vitest": "3.2.4"
+  }
+}

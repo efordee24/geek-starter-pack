@@ -123,6 +123,15 @@ If Figma MCP is unavailable during setup, record what the user *intends* (accoun
 
 ## Closing
 
-- Report `check-setup` result; if it fails, say what to fix.
+- Report `check-setup` result; if it fails, say what to fix. An empty `prototypes/` folder is **expected** — not a setup failure.
 - Tell the user they can say "set up" again to reconfigure, or edit `PRODUCT.md` / `DESIGN.md` directly.
-- Point to `gov-prototype-scaffold` for cutting the first prototype version.
+
+### First prototype version (after pack setup)
+
+Pack setup does **not** create v1 or v2. Offer this as the natural next step:
+
+1. Ask whether they want to create their **first prototype version** now (one sentence description).
+2. If yes, follow **`gov-prototype-scaffold`** — run `scaffold.mjs` (defaults to `v1`), then tell them to run `npm start` and open `http://localhost:3000/` (dashboard) and `http://localhost:3000/v1/`.
+3. If not yet, tell them the dashboard at `/` will show an empty state with the same instructions when they are ready.
+
+Do not pre-scaffold v1/v2 during pack setup unless the user explicitly asks for a specific version label and description.

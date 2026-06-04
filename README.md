@@ -24,7 +24,16 @@ Open the folder in **Cursor** or **Claude Code** and say:
 
 The `gov-prototype-setup` skill walks you through department, service, audience, product context, GDS design constraints, and MCP connector names — then writes the files and runs bootstrap for you. You do not need to edit JSON or run scripts yourself.
 
-### 3. Verify
+### 3. Run the prototype
+
+```bash
+npm install
+npm start
+```
+
+Open [http://localhost:3000/](http://localhost:3000/) — the **dashboard** links to each prototype version you create (`/v1/`, …) and the **design trail** (`/trail`). The pack starts with **no versions**; the dashboard shows what to do next until you cut the first one.
+
+### 4. Verify setup
 
 ```bash
 node scripts/check-setup.mjs
@@ -32,7 +41,7 @@ node scripts/check-setup.mjs
 
 Optional: `node scripts/load-context.mjs` prints `PRODUCT.md`, `DESIGN.md`, and config as JSON for agents.
 
-### 4. Manual path (technical)
+### 5. Manual path (technical)
 
 Edit `config/project.json`, fill in `PRODUCT.md` and `DESIGN.md`, then:
 
@@ -44,7 +53,7 @@ node scripts/check-setup.mjs
 
 To change settings later, run setup again in chat or edit the context files and `node scripts/sync-context.mjs`.
 
-### 5. Start your own history (optional)
+### 6. Start your own history (optional)
 
 The agent can guide you through this; only run destructive steps if you intend to replace the pack’s git history:
 
@@ -53,7 +62,7 @@ rm -rf .git && git init && git add -A && git commit -m "Initial prototype from s
 git remote add origin <your-remote> && git push -u origin main
 ```
 
-### 6. MCP connectors
+### 7. MCP connectors
 
 Connect these in your tool’s MCP settings. Names are stored in `config/project.json` for reference only — no credentials in the repo.
 
@@ -84,8 +93,12 @@ DESIGN.md                    GDS-first design constraints for this service
 CLAUDE.md, AGENTS.md         Entry points (Claude Code / cross-tool)
 .cursor/rules/*.mdc          Cursor rules, path-scoped via globs
 docs/standards/*.md          Canonical conventions, shared by both tools
-docs/decisions/              The design-decision trail (see its README)
-docs/reviews/                Saved accessibility and design review reports
+docs/decisions/              The design-decision trail (indexed at /trail/decisions)
+docs/reviews/                Saved review reports (indexed at /trail/reviews)
+prototypes/                  Version metadata (VERSION.md per cut)
+src/server/versions/         Routable prototype code (/v1/, /v2/, …)
+src/server/dashboard/        Root dashboard (GET /)
+package.json                 npm start — single shared Hapi app
 .claude/skills/
   gov-prototype-setup/       Chat-first pack configuration
   gov-prototype-scaffold/    Init versioned prototypes, decision records, review reports (bundles scripts)
@@ -105,12 +118,16 @@ scripts/
 ## Daily use
 
 - **Set up or reconfigure:** ask to set up this prototype pack, or use the `gov-prototype-setup` skill.
-- **Start a prototype version:** ask the agent to scaffold one, or run
-  `node .claude/skills/gov-prototype-scaffold/scripts/scaffold.mjs v1 "first cut"`.
+- **Run the app:** `npm start` → dashboard at `/`.
+- **First prototype version:** ask the agent to create your first prototype version, or `node .claude/skills/gov-prototype-scaffold/scripts/scaffold.mjs "first cut"` → **v1** at `/v1/` (see [docs/standards/prototypes.md](docs/standards/prototypes.md)).
 - **Record a decision:** ask the agent to "log this decision", or run
   `node .claude/skills/gov-prototype-scaffold/scripts/new-adr.mjs "<title>"`. Decisions are recorded proactively as they're made — see `docs/decisions/README.md` for how the decentralised trail works.
 - **Review:** ask for an accessibility review or a design/conformance review before handover; both pull requirements and research via MCP where connected and save a dated report in `docs/reviews/`.
 - **Ideate:** ask the design ideator for alternative approaches early, grounded in research and existing Figma frames.
+
+## Migrating from isolated `prototypes/vN/src/` repos
+
+If you used an older layout with a full app copy under each `prototypes/vN/` folder, move server code to `src/server/versions/vN/`, hoist shared `common/` and `client/` to `src/`, keep `prototypes/vN/VERSION.md`, then confirm `/`, `/v1/`, and `/trail`. Details in [docs/standards/prototypes.md](docs/standards/prototypes.md).
 
 ## Switching departments
 

@@ -30,6 +30,8 @@ The script creates a draft template. Fill in Summary, Scope, and Findings from t
 
 Or ask for an accessibility or design review — the reviewer agents create and populate the file as part of the run.
 
+When the app is running, browse the index at [/trail/reviews](http://localhost:3000/trail/reviews) (filter with `?prototype=v1`).
+
 ## Frontmatter
 
 | Field | Meaning |

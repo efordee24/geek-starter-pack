@@ -1,44 +1,78 @@
 ---
 name: gov-prototype-scaffold
-description: Initialise a new GOV.UK prototype or cut a new version of one, and create decision records. Use this whenever the user wants to start a prototype, spin up a new prototype environment, create a new versioned prototype, scaffold a feature, or record a design decision in a government/GDS-style project. Trigger even if they don't say "scaffold" — "let's start v2", "set up a fresh prototype", "new version of the upload flow" all mean this.
+description: Create or extend GOV.UK prototype versions on the shared server, and record decisions or reviews. Use when the user wants a first prototype version, to cut v1/v2, start prototyping, scaffold a feature, log a decision, or save a review. Trigger on "create my first prototype", "cut a new version", "start v1", "new version of the flow", or an empty dashboard with no versions yet.
 ---
 
 # Prototype scaffolding
 
-Procedures for standing up versioned prototypes and writing decision records. Standards (how to build) live in `docs/standards/` and load as rules — this skill is only the *how to set things up* layer.
+Versioned prototypes on one Hapi app. Full model: `docs/standards/prototypes.md`.
 
-## Cut a new prototype version
+## Check what exists
 
-Run the bundled script rather than building the structure by hand:
+```bash
+ls prototypes/ 2>/dev/null
+ls src/server/versions/ 2>/dev/null
+```
+
+The pack ships **without** pre-made v1 or v2 folders. An empty `prototypes/` directory is normal until the first cut.
+
+## Run the app
+
+```bash
+npm install
+npm start
+```
+
+Open `http://localhost:3000/` — the dashboard lists versions or shows an empty state with next steps.
+
+## First prototype version
+
+When `prototypes/` has no `vN` folders (or the user asks for their first version):
+
+1. Confirm pack setup is done (`node scripts/check-setup.mjs` — context files matter; missing versions is fine).
+2. Ask for a **short description** of this cut (one sentence is enough).
+3. Default label to **v1** unless they name another (`v2`, `pilot`, etc.).
+4. Run:
+   ```bash
+   node .claude/skills/gov-prototype-scaffold/scripts/scaffold.mjs v1 "<description>"
+   ```
+   Or omit the label to auto-pick the next `vN`:
+   ```bash
+   node .claude/skills/gov-prototype-scaffold/scripts/scaffold.mjs "<description>"
+   ```
+5. Tell the user to **restart `npm start`** if the server is already running, then open `http://localhost:3000/v1/` (or their label).
+6. When logging decisions or reviews for this cut, pass `--prototype v1` (or the label used).
+
+Do not create v1 and v2 placeholders “just in case” — one version at a time, when the team is ready.
+
+## Cut another version
+
+When at least one version exists and the team wants a new milestone:
 
 ```bash
 node .claude/skills/gov-prototype-scaffold/scripts/scaffold.mjs <version-label> "<short description>"
 ```
 
-If `<version-label>` is omitted it defaults to the next `vN` by scanning `prototypes/`. The script creates `prototypes/<version>/` with the standard `src/` layout and a `VERSION.md` stamped with the label, description, author (from git) and creation date. It does not overwrite an existing version.
+Creates `prototypes/<version>/VERSION.md` and `src/server/versions/<version>/` (routes at `/<version>/`). Restart `npm start` after scaffolding if the server is running.
 
-Versions are deliberate milestones decided by a person, so a shared `vN` scheme is fine. If two people might cut versions in parallel, agree the label first or pass an explicit one.
+To **freeze** a version, set `status: frozen` in its `VERSION.md`.
 
 ## Save a review report
-
-After an accessibility or design review, persist the report under `docs/reviews/`:
 
 ```bash
 node .claude/skills/gov-prototype-scaffold/scripts/new-review.mjs "<title>" --type accessibility|design [--prototype <version>]
 ```
 
-Filenames use `YYYY-MM-DD-HHMM-<slug>-<shortid>.md` (local time). See `docs/reviews/README.md`.
+See `docs/reviews/README.md`.
 
 ## Record a design decision
-
-Decisions live in `docs/decisions/` as one immutable file per decision, designed for a decentralised trail (many people, local work, pushed to a remote). Create one with:
 
 ```bash
 node .claude/skills/gov-prototype-scaffold/scripts/new-adr.mjs "<title>" [--prototype <version>] [--supersedes <id>]
 ```
 
-This generates a collision-safe filename (`YYYY-MM-DD-<slug>-<shortid>.md`), captures author and timestamp from git, and writes a template with `status: proposed`. Then fill in the Context, Decision and Consequences sections from the reasoning or the discussion with the user. See `gov-decision-log` for how to write a good record. Never edit a past decision to change it — supersede it with `--supersedes`.
+See `gov-decision-log` and `docs/decisions/README.md`.
 
-## Scaffold a feature within a prototype
+## Scaffold a feature within a version
 
-Follow the file layout in `docs/standards/templates.md` (folder per feature under `src/server/`, registered in `router.js`). Reuse existing components and styles first per `docs/standards/styling.md`.
+Add `src/server/versions/<version>/<feature-name>/` (`index.js`, `controller.js`, templates). Register routes in that version’s `index.js`. Shared code stays in `src/server/common/`. Follow `docs/standards/templates.md`.

@@ -13,5 +13,5 @@ Principles:
 - State design intent in reasoning, not just implementation.
 - Record non-obvious decisions in `docs/decisions/` as they are made.
 
-Detailed standards: see `docs/standards/{project,templates,styling,javascript,content,figma-mcp}.md`.
+Detailed standards: see `docs/standards/{project,prototypes,templates,styling,javascript,content,figma-mcp}.md`.
 Skills: `.claude/skills/` (start with `gov-prototype-setup` to configure the pack). Sub-agents (Claude Code): `.claude/agents/`.

@@ -1,0 +1,38 @@
+{% extends "common/templates/layouts/govuk-layout.njk" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Design trail</h1>
+  <p class="govuk-body-l">
+    Immutable record of decisions and reviews for {{ serviceName }}. Source files live in <code>docs/decisions/</code> and <code>docs/reviews/</code>.
+  </p>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <h2 class="govuk-heading-m">Decisions</h2>
+      <p class="govuk-body">{{ decisionCount }} record{% if decisionCount > 1 %}s{% endif %}</p>
+      <p class="govuk-body"><a class="govuk-link" href="/trail/decisions">View all decisions</a></p>
+    </div>
+    <div class="govuk-grid-column-one-half">
+      <h2 class="govuk-heading-m">Reviews</h2>
+      <p class="govuk-body">{{ reviewCount }} report{% if reviewCount > 1 %}s{% endif %}</p>
+      <p class="govuk-body"><a class="govuk-link" href="/trail/reviews">View all reviews</a></p>
+    </div>
+  </div>
+
+  {% if versions.length %}
+    <h2 class="govuk-heading-m">Filter by prototype version</h2>
+    <ul class="govuk-list">
+      {% for v in versions %}
+        <li>
+          <a class="govuk-link" href="/trail/decisions?prototype={{ v.version }}">{{ v.version }} decisions</a>
+          ·
+          <a class="govuk-link" href="/trail/reviews?prototype={{ v.version }}">{{ v.version }} reviews</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="govuk-body">No prototype versions yet — <a class="govuk-link" href="/">create your first version from the dashboard</a>.</p>
+  {% endif %}
+
+  <p class="govuk-body" style="margin-top: 30px"><a class="govuk-link" href="/">Back to dashboard</a></p>
+{% endblock %}

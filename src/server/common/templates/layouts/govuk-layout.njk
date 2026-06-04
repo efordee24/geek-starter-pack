@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block pageTitle %}{{ pageTitle }} | {{ serviceName }}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c">
+    <link rel="stylesheet" href="/govuk/govuk-frontend.min.css">
+    {% block head %}{% endblock %}
+  </head>
+  <body class="govuk-template__body">
+    {% raw %}
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+    {% endraw %}
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <header class="govuk-header" role="banner" data-module="govuk-header">
+      <div class="govuk-header__container govuk-width-container">
+        <div class="govuk-header__logo">
+          <a href="/" class="govuk-header__link govuk-header__link--homepage">
+            <span class="govuk-header__product-name">{{ serviceName }}</span>
+          </a>
+        </div>
+        <nav aria-label="Menu" class="govuk-header__navigation">
+          <ul class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/">Dashboard</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/trail">Design trail</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="govuk-width-container">
+      <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+    <footer class="govuk-footer" role="contentinfo">
+      <div class="govuk-width-container">
+        <div class="govuk-footer__meta">
+          <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+            <span class="govuk-footer__licence-description">
+              {{ departmentFullName }} prototype — not a live service.
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="/govuk/govuk-frontend.min.js"></script>
+    {% raw %}
+    <script type="module">
+      import { initAll } from '/govuk/govuk-frontend.min.js'
+      initAll()
+    </script>
+    {% endraw %}
+    {% block bodyEnd %}{% endblock %}
+  </body>
+</html>
