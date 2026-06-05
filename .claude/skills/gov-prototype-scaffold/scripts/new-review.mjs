@@ -67,36 +67,12 @@ if (existsSync(path)) {
 }
 
 const findingsSection = type === 'accessibility'
-  ? `### Blocking
-
-None recorded yet.
-
-### Should fix
-
-None recorded yet.
-
-### Improvements
-
-None recorded yet.
-
-## Persona notes
-
-Summarise impact by persona (low vision, screen reader, motor, ADHD/autism, dyslexia, low reading age, ESL).`
-  : `### Requirements
-
-None recorded yet.
-
-### Research
-
-None recorded yet.
-
-### GDS standards
-
-None recorded yet.
-
-### Best practice and project standards
-
-None recorded yet.`
+  ? `| # | Severity | Persona(s) | Location | Issue | Fix |
+| - | -------- | ---------- | -------- | ----- | --- |
+| 1 | Blocker / Should fix / Consider | — | — | — | — |`
+  : `| # | Severity | Lens | Finding | Fix |
+| - | -------- | ---- | ------- | --- |
+| 1 | Blocker / Should fix / Consider | Requirements / Research / GDS / Best practice | — | — |`
 
 const body = `---
 id: ${id}
@@ -112,13 +88,13 @@ status: draft
 
 ## Summary
 
-One paragraph: overall verdict and whether anything blocks progress.
+2–3 sentences: overall verdict and whether anything blocks progress.
 
 ## Scope
 
 - **Prototype:** ${prototype || 'not specified'}
-- **Reviewed:** (flows, screens, frames, or routes — fill in)
-- **Evidence:** (files, Figma nodes, requirements links — fill in)
+- **Reviewed:** (flows, screens, frames, or routes)
+- **Evidence:** (files, Figma nodes, requirements links)
 
 ## Findings
 
